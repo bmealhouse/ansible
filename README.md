@@ -1,8 +1,8 @@
-# Ansible Mac Playbook
+# Ansible Mac Playbooks
 
 > Automated Mac setup and configuration with Ansible
 
-This playbook installs and configures most of my Mac software for software development. Some things in macOS are challenging to automate, so I still have a few manual installation steps documented here.
+These playbooks install and configure most of the Mac software I use for software development. Some things in macOS are challenging to automate, so I still have a few manual installation steps documented.
 
 ## Installation
 
@@ -10,11 +10,11 @@ This playbook installs and configures most of my Mac software for software devel
 2. [Install Ansible](https://docs.ansible.com/ansible/latest/installation_guide/index.html):
 
    1. Run the following command to add Python 3 to your $PATH: `export PATH="$HOME/Library/Python/3.8/bin:/opt/homebrew/bin:$PATH"`
-   2. Upgrade Pip: `sudo pip3 install --upgrade pip`
-   3. Install Ansible: `pip3 install ansible`
+   2. Upgrade Pip: `pip3 install --upgrade pip`
+   3. Install Ansible: `pip3 install ansible yamllint ansible-lint`
 
-3. Clone or download this repository to your mac.
+3. Download this repository to your mac.
 4. Run `ansible-galaxy install -r requirements.yml` inside this directory to install required Ansible roles.
-5. Run `ansible-playbook main.yml --ask-become-pass` inside this directory. Enter your macOS account password when prompted for the 'BECOME' password.
+5. Run `ansible-playbook main.yml --ask-vault-password` inside this directory.
 
 > Note: If some Homebrew commands fail, you might need to agree to Xcode's license or fix some other Brew issue. Run `brew doctor` to see if this is the case.
