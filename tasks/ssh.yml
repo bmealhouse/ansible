@@ -1,4 +1,9 @@
 ---
+- name: ensure the ~/.ssh directory exists
+  file:
+    path: ~/.ssh
+    state: directory
+
 - name: generate an OpenSSH keypair for GitHub access
   register: ssh_key
   community.crypto.openssh_keypair:
