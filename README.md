@@ -15,6 +15,6 @@ These playbooks install and configure most of the Mac software I use for softwar
 
 3. Download this repository to your mac.
 4. Run `ansible-galaxy install -r requirements.yml` inside this directory to install required Ansible roles.
-5. Run `ansible-playbook main.yml --ask-vault-password` inside this directory.
+5. Run `ansible-playbook dev.yml --ask-vault-pass --ask-become-pass` inside this directory.
 
 > Note: If some Homebrew commands fail, you might need to agree to Xcode's license or fix some other Brew issue. Run `brew doctor` to see if this is the case.
