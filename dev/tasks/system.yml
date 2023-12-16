@@ -55,7 +55,7 @@
   community.general.osx_defaults:
     domain: NSGlobalDomain
     key: KeyRepeat
-    type: int
+    type: float
     value: 2 # 1
     state: present
 
@@ -63,7 +63,7 @@
   community.general.osx_defaults:
     domain: NSGlobalDomain
     key: InitialKeyRepeat
-    type: int
+    type: float
     value: 15 # 10
     state: present
 
