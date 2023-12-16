@@ -51,6 +51,7 @@
       - alacritty
       - amazon-workspaces
       - appcleaner
+      - arc
       - authy
       # - betterdisplay
       - google-chrome
@@ -67,23 +68,6 @@
       - warp
     state: latest
     update_homebrew: true
-  tags:
-    - up
-
-- name: check if arc is installed
-  register: arc_path
-  stat:
-    path: /Applications/Arc.app
-  tags:
-    - up
-
-- name: install arc
-  community.general.homebrew_cask:
-    name:
-      - arc
-    state: latest
-    update_homebrew: true
-  when: not arc_path.stat.exists
   tags:
     - up
 
