@@ -10,3 +10,9 @@
     name: user.email
     scope: global
     value: "bmealhouse@gmail.com"
+
+- name: configure git init default branch
+  git_config:
+    name: init.defaultBranch
+    scope: global
+    value: "main"

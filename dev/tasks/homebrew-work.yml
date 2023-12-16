@@ -1,0 +1,88 @@
+---
+- name: check if homebrew is installed
+  register: homebrew_path
+  stat:
+    path: /opt/homebrew
+
+- name: install homebrew
+  script: ../install-homebrew.sh
+  when: not homebrew_path.stat.exists
+
+- name: add homebrew to PATH
+  shell: |
+    echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> ~/.zprofile
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+  when: not homebrew_path.stat.exists
+
+- name: tap homebrew/cask repositories
+  community.general.homebrew_tap:
+    name:
+      - aws/tap
+      - beeftornado/rmtree
+      - homebrew/cask
+      - homebrew/cask-fonts
+      - homebrew/cask-versions
+      - planetscale/tap
+    state: present
+  tags:
+    - up
+
+- name: install homebrew formulae
+  community.general.homebrew:
+    name:
+      - aws-sam-cli
+      - awscli
+      - bat
+      - go
+      - jq
+      - neovim
+      - pscale
+      - ripgrep
+      - volta
+    state: latest
+    update_homebrew: true
+  tags:
+    - up
+
+- name: install homebrew casks
+  community.general.homebrew_cask:
+    name:
+      - 1password
+      - alacritty
+      - amazon-workspaces
+      - appcleaner
+      - authy
+      # - betterdisplay
+      - google-chrome
+      - grammarly-desktop
+      - iina
+      - perimeter81
+      - postman
+      - raycast
+      - sequel-ace
+      - slack
+      - slite
+      - temurin8
+      - visual-studio-code
+      - warp
+    state: latest
+    update_homebrew: true
+  tags:
+    - up
+
+- name: check if arc is installed
+  register: arc_path
+  stat:
+    path: /Applications/Arc.app
+  tags:
+    - up
+
+- name: install arc
+  community.general.homebrew_cask:
+    name:
+      - arc
+    state: latest
+    update_homebrew: true
+  when: not arc_path.stat.exists
+  tags:
+    - up

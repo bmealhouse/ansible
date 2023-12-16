@@ -5,7 +5,7 @@
     path: /opt/homebrew
 
 - name: install homebrew
-  script: files/install-homebrew.sh
+  script: ../install-homebrew.sh
   when: not homebrew_path.stat.exists
 
 - name: add homebrew to PATH
@@ -14,44 +14,66 @@
     eval "$(/opt/homebrew/bin/brew shellenv)"
   when: not homebrew_path.stat.exists
 
-- name: install homebrew formulae
-  community.general.homebrew:
-    name:
-      - exiftool
-      - jq
-      - neovim
-      - pure
-      - volta
-      - youtube-dl
-      - zsh-autosuggestions
-      - zsh-syntax-highlighting
-    state: latest
-    update_homebrew: true
-
 - name: tap homebrew/cask repositories
   community.general.homebrew_tap:
     name:
+      - beeftornado/rmtree
       - homebrew/cask
       - homebrew/cask-versions
     state: present
+  tags:
+    - up
+
+- name: install homebrew formulae
+  community.general.homebrew:
+    name:
+      - bat
+      - exiftool
+      - go
+      - jq
+      - neovim
+      - ripgrep
+      - volta
+      - youtube-dl
+    state: latest
+    update_homebrew: true
+  tags:
+    - up
 
 - name: install homebrew casks
   community.general.homebrew_cask:
     name:
       - 1password
-      - 1password-cli
+      - alacritty
       - appcleaner
-      - doxie
       - figma
-      - firefox-developer-edition
-      - google-chrome
-      - google-chrome-canary
       - grammarly-desktop
+      - iina
+      - ilok-license-manager
       - ngrok
-      - postman
       - raycast
-      - signal
       - steam
       - visual-studio-code
+      - vlc
+      - warp
     state: latest
     update_homebrew: true
+  tags:
+    - up
+
+- name: check if arc is installed
+  register: arc_path
+  stat:
+    path: /Applications/Arc.app
+  tags:
+    - up
+
+- name: install arc
+  community.general.homebrew_cask:
+    name:
+      - arc
+    state: latest
+    update_homebrew: true
+  when: not arc_path.stat.exists
+  tags:
+    - up

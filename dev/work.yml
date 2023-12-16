@@ -1,0 +1,24 @@
+---
+- hosts: all
+
+  tasks:
+    - import_tasks: tasks/ssh.yml
+    - import_tasks: tasks/git.yml
+    - import_tasks: tasks/system.yml
+      tags:
+        - up
+    - import_tasks: tasks/homebrew-work.yml
+      tags:
+        - brew
+    - import_tasks: tasks/node.yml
+      tags:
+        - node
+        - up
+    - import_tasks: tasks/dotfiles.yml
+      tags:
+        - dotfiles
+        - up
+    - import_tasks: tasks/fonts.yml
+      tags:
+        - fonts
+        - up

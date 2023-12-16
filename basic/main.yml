@@ -1,0 +1,8 @@
+---
+- hosts: all
+
+  tasks:
+    - import_tasks: tasks/homebrew.yml
+    - import_tasks: tasks/system.yml
+      tags:
+        - up
