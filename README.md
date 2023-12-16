@@ -7,15 +7,37 @@ These playbooks install and configure most of the Mac software I use for softwar
 ## Installation
 
 1. Ensure Apple's command line tools are installed (`xcode-select --install` to launch the installer).
-2. [Install Ansible](https://docs.ansible.com/ansible/latest/installation_guide/index.html):
+2. [Ensure `pip` is available](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html#ensuring-pip-is-available)
 
-   1. Run the following command to add Python 3 to your $PATH: `export PATH="$HOME/Library/Python/3.8/bin:/opt/homebrew/bin:$PATH"`
-   2. Upgrade Pip: `pip3 install --upgrade pip`
-   3. Install Ansible: `pip3 install ansible yamllint ansible-lint`
+   ```sh
+   python3 -m pip -V
+   ```
 
-3. Download this repository to your mac.
-4. Run `ansible-galaxy install -r requirements.yml` inside this directory to install required Ansible roles.
-5. Run `ansible-playbook dev/main.yml --ask-vault-pass --ask-become-pass` inside this directory.
+3. Add Python 3 to your $PATH.
+
+   ```sh
+   export PATH="$HOME/Library/Python/$(python3 -V | perl -pe '($_)=/(\d\.\d*)/')/bin:/opt/homebrew/bin:$PATH"
+   ```
+
+4. [Install Ansible](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html#pip-install):
+
+   ```sh
+   python3 -m pip install --user ansible
+   python3 -m pip install --user yamllint ansible-lint
+   ```
+
+5. Download this repository to your mac.
+6. Run ansible-galaxy to install required Ansible roles.
+
+   ```sh
+   ansible-galaxy install -r requirements.yml
+   ```
+
+7. Run ansible-playbook to execute a playbook.
+
+   ```sh
+   ansible-playbook dev/main.yml --ask-vault-pass --ask-become-pass
+   ```
 
 > Note: If some Homebrew commands fail, you might need to agree to Xcode's license or fix some other Brew issue. Run `brew doctor` to see if this is the case.
 
