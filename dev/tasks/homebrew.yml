@@ -33,6 +33,7 @@
       - jq
       - neovim
       - ripgrep
+      - shfmt
       - volta
       - youtube-dl
     state: latest

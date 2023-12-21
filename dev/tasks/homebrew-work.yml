@@ -38,6 +38,7 @@
       - neovim
       - pscale
       - ripgrep
+      - shfmt
       - volta
     state: latest
     update_homebrew: true

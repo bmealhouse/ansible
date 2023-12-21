@@ -1,36 +1,18 @@
 ---
-- name: install or update node
+- name: install or upgrade node
   command: volta install node
 
-- name: check if ni is installed
-  command: volta which ni
-  register: which_ni
-  changed_when: false
-  ignore_errors: true
+- name: install or upgrade ni
+  command: volta install @antfu/ni@latest
 
-- name: install ni
-  command: volta install @antfu/ni
-  when: which_ni.rc == 1
+- name: install or upgrade prettier
+  command: volta install prettier@latest
 
-- name: check if spot is installed
-  command: volta which spot
-  register: which_spot
-  changed_when: false
-  ignore_errors: true
+- name: install or upgrade spot
+  command: volta install spot@latest
 
-- name: install spot
-  command: volta install spot
-  when: which_spot.rc == 1
-
-- name: check if fast-cli is installed
-  command: volta which fast
-  register: which_fast_cli
-  changed_when: false
-  ignore_errors: true
-
-- name: install fast-cli
-  command: volta install fast-cli
-  when: which_fast_cli.rc == 1
+- name: install or upgrade fast-cli
+  command: volta install fast-cli@latest
 
 - name: list npm config
   command: npm config list
