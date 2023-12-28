@@ -5,9 +5,6 @@
 - name: install or upgrade ni
   command: volta install @antfu/ni@latest
 
-- name: install or upgrade prettier
-  command: volta install prettier@latest
-
 - name: install or upgrade spot
   command: volta install spot@latest
 
