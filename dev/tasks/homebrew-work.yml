@@ -38,6 +38,7 @@
       - neovim
       - pscale
       - ripgrep
+      - starship
       - volta
     state: latest
     update_homebrew: true
