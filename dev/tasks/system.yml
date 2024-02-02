@@ -47,6 +47,14 @@
     value: 0
     state: present
 
+- name: disable the Swipe between pages gesture
+  community.general.osx_defaults:
+    domain: NSGlobalDomain
+    key: AppleEnableSwipeNavigateWithScrolls
+    type: int
+    value: 0
+    state: present
+
 ######################################################################
 # Keyboard
 ######################################################################

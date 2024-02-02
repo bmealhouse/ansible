@@ -6,6 +6,7 @@
     - import_tasks: tasks/git.yml
     - import_tasks: tasks/system.yml
       tags:
+        - system
         - up
     - import_tasks: tasks/homebrew-work.yml
       tags:

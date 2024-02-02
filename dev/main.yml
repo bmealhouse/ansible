@@ -7,6 +7,7 @@
     - import_tasks: tasks/sharing.yml
     - import_tasks: tasks/system.yml
       tags:
+        - system
         - up
     - import_tasks: tasks/homebrew.yml
       tags:
