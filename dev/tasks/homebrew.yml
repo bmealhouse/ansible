@@ -32,10 +32,13 @@
       - go
       - jq
       - neovim
+      - pipx
       - ripgrep
       - starship
       - volta
       - youtube-dl
+      - zsh-autosuggestions
+      - zsh-syntax-highlighting
     state: latest
     update_homebrew: true
   tags:

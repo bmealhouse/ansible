@@ -7,33 +7,28 @@ These playbooks install and configure most of the Mac software I use for softwar
 ## Installation
 
 1. Ensure Apple's command line tools are installed (`xcode-select --install` to launch the installer).
-2. [Ensure `pip` is available](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html#ensuring-pip-is-available)
+2. [Ensure `pipx` is available](https://pipx.pypa.io/stable/installation/)
 
    ```sh
-   python3 -m pip -V
+   brew install pipx
+   pipx ensurepath
    ```
 
-3. Add Python 3 to your $PATH.
+3. [Install Ansible](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html#installing-and-upgrading-ansible-with-pipx):
 
    ```sh
-   export PATH="$HOME/Library/Python/$(python3 -V | perl -pe '($_)=/(\d\.\d*)/')/bin:/opt/homebrew/bin:$PATH"
+   pipx install ansible-core
+   pipx install ansible-lint yamllint
    ```
 
-4. [Install Ansible](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html#pip-install):
-
-   ```sh
-   python3 -m pip install --user ansible
-   python3 -m pip install --user yamllint ansible-lint
-   ```
-
-5. Download this repository to your mac.
-6. Run ansible-galaxy to install required Ansible roles.
+4. Download this repository to your mac.
+5. Run ansible-galaxy to install required Ansible roles.
 
    ```sh
    ansible-galaxy install -r requirements.yml
    ```
 
-7. Run ansible-playbook to execute a playbook.
+6. Run ansible-playbook to execute a playbook.
 
    ```sh
    ansible-playbook dev/main.yml --ask-vault-pass --ask-become-pass
