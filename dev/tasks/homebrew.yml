@@ -62,6 +62,7 @@
       - visual-studio-code
       - vlc
       - warp
+      - zed
     state: latest
     update_homebrew: true
   tags:

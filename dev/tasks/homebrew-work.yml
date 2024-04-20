@@ -71,6 +71,7 @@
       - temurin8
       - visual-studio-code
       - warp
+      - zed
     state: latest
     update_homebrew: true
   tags:
