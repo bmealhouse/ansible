@@ -12,6 +12,7 @@
     - import_tasks: tasks/homebrew.yml
       tags:
         - brew
+        - up
     - import_tasks: tasks/node.yml
       tags:
         - node

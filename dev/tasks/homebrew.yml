@@ -18,11 +18,9 @@
   community.general.homebrew_tap:
     name:
       - beeftornado/rmtree
-      - homebrew/cask
+      - homebrew/cask-fonts
       - homebrew/cask-versions
     state: present
-  tags:
-    - up
 
 - name: install homebrew formulae
   community.general.homebrew:
@@ -39,10 +37,7 @@
       - youtube-dl
       - zsh-autosuggestions
       - zsh-syntax-highlighting
-    state: latest
-    update_homebrew: true
-  tags:
-    - up
+    state: present
 
 - name: install homebrew casks
   community.general.homebrew_cask:
@@ -51,22 +46,17 @@
       - alacritty
       - appcleaner
       - arc
+      - betterdisplay
+      - copilot
       - figma
-      - grammarly-desktop
       - iina
       - ilok-license-manager
-      - ngrok
       - raycast
-      - reader
       - steam
       - visual-studio-code
-      - vlc
       - warp
       - zed
-    state: latest
-    update_homebrew: true
-  tags:
-    - up
+    state: present
 
 - name: install homebrew fonts
   community.general.homebrew_cask:
@@ -99,5 +89,9 @@
       - font-tinos-nerd-font
       - font-ubuntu-nerd-font
       - font-victor-mono-nerd-font
-  tags:
-    - up
+    state: present
+
+- name: upgrade all homebrew packages
+  community.general.homebrew:
+    update_homebrew: true
+    upgrade_all: true
