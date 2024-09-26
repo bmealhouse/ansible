@@ -10,7 +10,7 @@ These playbooks install and configure most of the Mac software I use for softwar
 2. [Ensure `pipx` is available](https://pipx.pypa.io/stable/installation/)
 
    ```sh
-   brew install pipx
+   brew install pipx python-setuptools
    pipx ensurepath
    ```
 
