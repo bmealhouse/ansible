@@ -28,6 +28,7 @@
       - bash
       - bat
       - exiftool
+      - fd
       - go
       - jq
       - neovim

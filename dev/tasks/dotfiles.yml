@@ -5,7 +5,6 @@
 
 - name: append homebrew bash shell to /etc/shells
   shell: echo "/opt/homebrew/bin/bash" | sudo tee -a /etc/shells
-  # when: etc_shells.stdout.find("/opt/homebrew/bin/bash") == -1
   when: "'/opt/homebrew/bin/bash' not in etc_shells.stdout"
 
 - name: get the current shell
@@ -57,4 +56,10 @@
 #   file:
 #     src: ~/dev/dotfiles/nvim/lua/custom
 #     dest: ~/.config/nvim/lua/custom
+#     state: link
+
+# - name: create a symbolic link for neovim
+#   file:
+#     src: ~/dev/dotfiles/nvim
+#     dest: ~/.config/nvim
 #     state: link
