@@ -20,5 +20,9 @@
       - appcleaner
       - figma
       - raycast
-    state: latest
+    state: present
+
+- name: upgrade all homebrew packages
+  community.general.homebrew:
     update_homebrew: true
+    upgrade_all: true
