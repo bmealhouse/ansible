@@ -10,7 +10,7 @@
 
 - name: add homebrew to PATH
   shell: |
-    echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> ~/.profile
+    echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> ~/.bash_profile
     eval "$(/opt/homebrew/bin/brew shellenv)"
   when: not homebrew_path.stat.exists
 
