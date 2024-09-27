@@ -1,18 +1,30 @@
 ---
-- name: create ~/.zsh
+- name: read /etc/shells
+  register: etc_shells
+  shell: cat /etc/shells
+
+- name: append homebrew bash shell to /etc/shells
+  shell: echo "/opt/homebrew/bin/bash" | sudo tee -a /etc/shells
+  # when: etc_shells.stdout.find("/opt/homebrew/bin/bash") == -1
+  when: "'/opt/homebrew/bin/bash' not in etc_shells.stdout"
+
+- name: get the current shell
+  shell: echo $SHELL
+  register: current_shell
+
+- name: default to the homebrew bash shell
+  shell: chsh -s /opt/homebrew/bin/bash
+  when: current_shell.stdout != "/opt/homebrew/bin/bash"
+
+- name: create ~/.bash
   file:
-    path: ~/.zsh
+    path: ~/.bash
     state: directory
 
 - name: download git-completion.bash
   get_url:
     url: https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash
-    dest: ~/.zsh/git-completion.bash
-
-- name: download git-completion.zsh
-  get_url:
-    url: https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.zsh
-    dest: ~/.zsh/_git
+    dest: ~/.bash/git-completion.bash
 
 - name: create ~/dev
   file:
@@ -24,10 +36,10 @@
     repo: git@github.com:bmealhouse/dotfiles.git
     dest: ~/dev/dotfiles
 
-- name: create a symbolic link for .zshrc
+- name: create a symbolic link for .bashrc
   file:
-    src: ~/dev/dotfiles/zsh/.zshrc
-    dest: ~/.zshrc
+    src: ~/dev/dotfiles/bash/.bashrc
+    dest: ~/.bashrc
     state: link
 
 - name: create a symbolic link for alacritty
@@ -35,15 +47,14 @@
     src: ~/dev/dotfiles/alacritty
     dest: ~/.config/alacritty
     state: link
+# - name: clone nvchad repo
+#   git:
+#     repo: https://github.com/NvChad/NvChad
+#     dest: ~/.config/nvim
+#     depth: 1
 
-- name: clone nvchad repo
-  git:
-    repo: https://github.com/NvChad/NvChad
-    dest: ~/.config/nvim
-    depth: 1
-
-- name: create a symbolic link for neovim
-  file:
-    src: ~/dev/dotfiles/nvim/lua/custom
-    dest: ~/.config/nvim/lua/custom
-    state: link
+# - name: create a symbolic link for neovim
+#   file:
+#     src: ~/dev/dotfiles/nvim/lua/custom
+#     dest: ~/.config/nvim/lua/custom
+#     state: link

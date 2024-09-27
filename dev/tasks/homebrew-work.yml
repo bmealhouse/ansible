@@ -10,7 +10,7 @@
 
 - name: add homebrew to PATH
   shell: |
-    echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> ~/.zprofile
+    echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> ~/.profile
     eval "$(/opt/homebrew/bin/brew shellenv)"
   when: not homebrew_path.stat.exists
 
@@ -29,6 +29,7 @@
     name:
       - aws-sam-cli
       - awscli
+      - bash
       - bat
       - go
       - jq
