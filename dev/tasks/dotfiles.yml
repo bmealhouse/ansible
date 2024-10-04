@@ -51,20 +51,9 @@
     src: ~/dev/dotfiles/alacritty
     dest: ~/.config/alacritty
     state: link
-# - name: clone nvchad repo
-#   git:
-#     repo: https://github.com/NvChad/NvChad
-#     dest: ~/.config/nvim
-#     depth: 1
 
-# - name: create a symbolic link for neovim
-#   file:
-#     src: ~/dev/dotfiles/nvim/lua/custom
-#     dest: ~/.config/nvim/lua/custom
-#     state: link
-
-# - name: create a symbolic link for neovim
-#   file:
-#     src: ~/dev/dotfiles/nvim
-#     dest: ~/.config/nvim
-#     state: link
+- name: create a symbolic link for neovim
+  file:
+    src: ~/dev/dotfiles/nvim
+    dest: ~/.config/nvim
+    state: link
